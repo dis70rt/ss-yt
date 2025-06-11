@@ -8,7 +8,7 @@ downloader = YoutubeDownloader()
 
 @app.route("/")
 def index():
-    return "YouTube Downloader API"
+    return send_file("docs.html")
 
 @app.route('/watch', methods=["GET"])
 def watch_video():

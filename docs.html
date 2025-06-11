@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy YouTube Downloader</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #c0392b;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #c0392b;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+            font-size: 2em;
+            margin-top: 30px;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p,
+        li {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        code,
+        pre {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 0.95em;
+            display: block;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .parameter-table th,
+        .parameter-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .parameter-table th {
+            background-color: #e74c3c;
+            color: white;
+            font-weight: 600;
+        }
+
+        .parameter-table td code {
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            display: inline;
+        }
+
+        .required {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffeeba;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .note p {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9em;
+            width: 100%;
+        }
+
+        .example-section {
+            margin-top: 20px;
+        }
+
+        .example-section h3 {
+            font-size: 1.4em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Easy YouTube Downloader</h1>
+    </header>
+
+    <div class="container">
+        <h2>Welcome!</h2>
+        <p>This tool helps you download YouTube videos or get direct links to watch them. It's simple to use!</p>
+        <p>Just add some information to the website address (URL) and you're good to go.</p>
+
+        <h2>How to Use It</h2>
+        <p>The main way to use this service is by going to the <code>/watch</code> link. You'll need to add a question
+            mark <code>?</code> after <code>/watch</code> and then provide some details.</p>
+
+        <p><strong>The most important detail is the Video ID.</strong></p>
+        <ul>
+            <li>Every YouTube video has a unique ID. For example, in the link
+                <code>https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>, the Video ID is <code>dQw4w9WgXcQ</code>.</li>
+            <li>You must include this using <code>v=VIDEO_ID_HERE</code>.</li>
+        </ul>
+
+        <h3>Parameters (Options You Can Add)</h3>
+        <p>Here are the options you can use to customize your download or stream. You combine these with an ampersand
+            <code>&</code> symbol (e.g., <code>v=VIDEO_ID&q=720p</code>).</p>
+
+        <table class="parameter-table">
+            <thead>
+                <tr>
+                    <th>Option</th>
+                    <th>What it does</th>
+                    <th>Example Values</th>
+                    <th>Default</th>
+                    <th>Needed?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>v</code></td>
+                    <td>The ID of the YouTube video.</td>
+                    <td>e.g., <code>dQw4w9WgXcQ</code></td>
+                    <td>N/A</td>
+                    <td><span class="required">Yes</span></td>
+                </tr>
+                <tr>
+                    <td><code>q</code></td>
+                    <td>Video quality. <code>1080p</code> will download the file. Other qualities give a direct link to
+                        watch.</td>
+                    <td><code>360p</code>, <code>720p</code>, <code>1080p</code></td>
+                    <td><code>360p</code></td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><code>sub</code></td>
+                    <td>Include subtitles? (English only for now)</td>
+                    <td><code>true</code> or <code>false</code></td>
+                    <td><code>true</code></td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><code>media</code></td>
+                    <td>Get video (<code>mp4</code>) or just audio (<code>mp3</code>). Choosing <code>mp3</code> will
+                        always download the file.</td>
+                    <td><code>mp4</code>, <code>mp3</code></td>
+                    <td><code>mp4</code></td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="example-section">
+            <h3>Let's See Some Examples!</h3>
+            <p>Imagine your service is running at <code>http://your-website.com</code>. You would add
+                <code>/watch?</code> and then your options:</p>
+
+            <p><strong>1. Get a link to watch a video in 720p:</strong></p>
+            <pre><code>http://your-website.com/watch?v=VIDEO_ID_HERE&q=720p</code></pre>
+
+            <p><strong>2. Download a video in 1080p with subtitles:</strong></p>
+            <pre><code>http://your-website.com/watch?v=VIDEO_ID_HERE&q=1080p&sub=true</code></pre>
+
+            <p><strong>3. Download just the audio (MP3) of a video:</strong></p>
+            <pre><code>http://your-website.com/watch?v=VIDEO_ID_HERE&media=mp3</code></pre>
+
+            <p><strong>4. Get a link for 360p video without subtitles:</strong></p>
+            <pre><code>http://your-website.com/watch?v=VIDEO_ID_HERE&q=360p&sub=false</code></pre>
+        </div>
+
+        <h2>What Happens Next?</h2>
+        <ul>
+            <li><strong>For Downloads (1080p video or MP3 audio):</strong> Your browser will start downloading the file.
+                The filename will be the video title.</li>
+            <li><strong>For Stream Links (e.g., 360p, 720p video):</strong> You'll be taken directly to a page where the
+                video plays (it's a direct link to the video stream).</li>
+        </ul>
+
+        <div class="note">
+            <p><strong>Important:</strong> If you request 1080p video or an MP3 audio, the file is first downloaded to
+                the server and then sent to you. This might take a moment!</p>
+        </div>
+
+        <h2>If Something Goes Wrong</h2>
+        <p>Sometimes things don't go as planned. Here's what an error might mean:</p>
+        <ul>
+            <li><strong>"Missing video ID"</strong>: You forgot to add the <code>v=VIDEO_ID_HERE</code> part.</li>
+            <li><strong>"File not found after download"</strong>: The server tried to download the file for you (for
+                1080p/MP3) but couldn't find it afterwards. This could be a temporary issue.</li>
+            <li><strong>Other errors ("Error: ...")</strong>: Something unexpected happened. It might be a problem with
+                the video link or a temporary server hiccup.</li>
+        </ul>
+        <p>If you see an error, double-check the Video ID and your options. Try again after a few minutes if it seems
+            like a temporary issue.</p>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Your Awesome YouTube Downloader. Enjoy!</p>
+    </footer>
+</body>
+
+</html>
